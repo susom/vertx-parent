@@ -338,7 +338,7 @@
             <artifactId>macker-maven-plugin</artifactId>
             <version>1.0.2</version>
             <configuration>
-              <rule>src/build/macker-rules.xml</rule>
+              <rule>src/tool/macker-rules.xml</rule>
             </configuration>
             <executions>
               <execution>
@@ -379,7 +379,7 @@
               </bundledSignatures>
               <signaturesFiles>
                 <signaturesFile>target/parent-files/forbidden-apis-parent.txt</signaturesFile>
-                <signaturesFile>src/build/forbidden-apis.txt</signaturesFile>
+                <signaturesFile>src/tool/forbidden-apis.txt</signaturesFile>
               </signaturesFiles>
             </configuration>
             <executions>
