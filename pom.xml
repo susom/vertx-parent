@@ -452,9 +452,7 @@
       <build>
         <plugins>
           <plugin>
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
             <artifactId>maven-dependency-plugin</artifactId>
-            <!--<version>2.10</version>-->
             <executions>
               <execution>
                 <goals>
@@ -476,7 +474,7 @@
               </execution>
             </executions>
             <configuration>
-              <checkerFrameworkVersion>2.0.0</checkerFrameworkVersion>
+              <checkerFrameworkVersion>2.1.2</checkerFrameworkVersion>
               <processors>
                 <processor>org.checkerframework.checker.tainting.TaintingChecker</processor>
               </processors>
