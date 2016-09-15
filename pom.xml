@@ -14,6 +14,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.target>1.8</maven.compiler.target>
     <vertx.version>3.3.2</vertx.version>
+    <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
   </properties>
 
   <dependencies>
@@ -41,7 +42,24 @@
       <artifactId>server-logging</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <version>2.1.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker</artifactId>
+      <version>2.1.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>jdk8</artifactId>
+      <version>2.1.2</version>
+      <scope>provided</scope>
+    </dependency>
     <!-- TODO vertx-base embeds some Spring stuff that needs JCL -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -462,23 +480,24 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.checkerframework</groupId>
-            <artifactId>checkerframework-maven-plugin</artifactId>
-            <version>1.8.2</version>
-            <executions>
-              <execution>
-                <phase>process-classes</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
-            </executions>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.3</version>
             <configuration>
-              <checkerFrameworkVersion>2.1.2</checkerFrameworkVersion>
-              <processors>
-                <processor>org.checkerframework.checker.tainting.TaintingChecker</processor>
-              </processors>
-              <javacParams>-Alint -AprintErrorStack -Astubs=${com.github.susom:database:jar}</javacParams>
+              <fork>true</fork>
+              <annotationProcessors>
+                <!--<annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>-->
+                <annotationProcessor>org.checkerframework.checker.tainting.TaintingChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs>
+                <arg>-J-Xmx1g</arg>
+                <arg>-J-Xss32m</arg>
+                <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
+                <arg>-version</arg>
+                <arg>-AprintErrorStack</arg>
+                <arg>-AprintAllQualifiers</arg>
+                <!--<arg>-Alint</arg>-->
+                <arg>-Astubs=${com.github.susom:database:jar}</arg>
+              </compilerArgs>
             </configuration>
           </plugin>
         </plugins>
