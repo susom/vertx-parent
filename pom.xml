@@ -501,6 +501,7 @@
                 <arg>-version</arg>
                 <arg>-AprintErrorStack</arg>
                 <arg>-AprintAllQualifiers</arg>
+                <arg>-AatfCacheSize=400</arg>
                 <!--<arg>-Alint</arg>-->
                 <arg>-Astubs=${com.github.susom:database:jar}</arg>
               </compilerArgs>
