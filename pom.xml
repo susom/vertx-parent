@@ -250,6 +250,7 @@
             <artifactId>maven-failsafe-plugin</artifactId>
             <configuration>
               <includes>
+                <include>**/*DaoTest</include>
                 <include>**/*DbTest</include>
                 <include>**/*HsqlTest</include>
               </includes>
@@ -274,6 +275,7 @@
             <artifactId>maven-failsafe-plugin</artifactId>
             <configuration>
               <includes>
+                <include>**/*DaoTest</include>
                 <include>**/*DbTest</include>
                 <include>**/*PostgresTest</include>
               </includes>
@@ -298,6 +300,7 @@
             <artifactId>maven-failsafe-plugin</artifactId>
             <configuration>
               <includes>
+                <include>**/*DaoTest</include>
                 <include>**/*DbTest</include>
                 <include>**/*OracleTest</include>
               </includes>
