@@ -61,7 +61,7 @@
 
   <profiles>
     <profile>
-      <id>release</id>
+      <id>release-as-parent-pom</id>
       <activation>
         <property>
           <name>performRelease</name>
