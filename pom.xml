@@ -6,8 +6,32 @@
 
   <groupId>com.github.susom</groupId>
   <artifactId>vertx-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>pom</packaging>
+
+  <!-- These are here because Sonatype requires them for release to Maven Central,
+       but we don't want our (parent pom) values. -->
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>To be provided by child pom.</description>
+  <url>https://github.com/susom/vertx-parent</url>
+
+  <licenses>
+    <license>
+      <name>To be provided by child pom.</name>
+      <url>https://example.com/to-be-provided-by-child-pom</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>To be provided by child pom.</name>
+      <email>to-be-provided-by-child-pom@example.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/susom/vertx-parent</url>
+  </scm>
 
   <properties>
     <vertx.version>3.3.3</vertx.version>
@@ -28,7 +52,7 @@
            static analysis) -->
       <groupId>com.github.susom</groupId>
       <artifactId>vertx-parent-files</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -510,6 +534,33 @@
                 <arg>-Astubs=${com.github.susom:database:jar}</arg>
               </compilerArgs>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
