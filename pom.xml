@@ -62,12 +62,12 @@
     <dependency>
       <groupId>com.github.susom</groupId>
       <artifactId>vertx-base</artifactId>
-      <version>1.0</version>
+      <version>1.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.github.susom</groupId>
       <artifactId>database-goodies</artifactId>
-      <version>1.0</version>
+      <version>1.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.github.susom</groupId>
