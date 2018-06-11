@@ -70,11 +70,6 @@
       <version>1.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>com.github.susom</groupId>
-      <artifactId>server-logging</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
       <version>${checkerframework.version}</version>
@@ -266,6 +261,19 @@
   </build>
 
   <profiles>
+    <profile>
+      <id>log4j</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.github.susom</groupId>
+          <artifactId>server-logging</artifactId>
+          <version>1.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
     <profile>
       <id>hsql</id>
       <activation>
