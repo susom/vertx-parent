@@ -1,1 +1,1 @@
-custom_maven_command: -Ppackagecloud-as-parent-pom clean compile
+custom_maven_command: -Pdistribution-as-parent-pom clean compile
