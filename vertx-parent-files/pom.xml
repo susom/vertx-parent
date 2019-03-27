@@ -41,13 +41,6 @@
   </properties>
 
   <build>
-    <extensions>
-      <extension>
-        <groupId>io.packagecloud.maven.wagon</groupId>
-        <artifactId>maven-packagecloud-wagon</artifactId>
-        <version>0.0.6</version>
-      </extension>
-    </extensions>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -68,25 +61,30 @@
 
   <profiles>
     <profile>
-      <id>packagecloud-as-parent-pom</id>
+      <id>distribution-as-parent-pom</id>
       <repositories>
         <repository>
-          <id>packagecloud</id>
-          <url>https://packagecloud.io/garricko/travis/maven2</url>
+          <id>io.cloudrepo.rit-public-snapshot</id>
+          <name>Research IT Public Snapshots</name>
+          <layout>default</layout>
+          <url>https://susom.mycloudrepo.io/public/repositories/rit-public-snapshot</url>
           <snapshots>
             <enabled>true</enabled>
             <updatePolicy>always</updatePolicy>
           </snapshots>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
         </repository>
       </repositories>
       <distributionManagement>
         <snapshotRepository>
-          <id>packagecloud</id>
-          <url>packagecloud+https://packagecloud.io/garricko/travis</url>
+          <id>io.cloudrepo.rit-public-snapshot</id>
+          <url>https://susom.mycloudrepo.io/repositories/rit-public-snapshot</url>
         </snapshotRepository>
         <repository>
-          <id>packagecloud</id>
-          <url>packagecloud+https://packagecloud.io/garricko/travis</url>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
       </distributionManagement>
     </profile>
