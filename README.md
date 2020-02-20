@@ -7,3 +7,15 @@ Maven parent pom you can inherit from to simplify your Vert.x project.
 There is a template project available that shows how to use this library:
 
 https://github.com/susom/vertx-template
+
+### Getting Started
+
+The library is available in the public Maven repository:
+
+```
+<dependency>
+  <groupId>com.github.susom</groupId>
+  <artifactId>vertx-parent</artifactId>
+  <version>1.2</version>
+</dependency>
+```
