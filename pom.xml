@@ -47,7 +47,7 @@
 
     <properties>
         <vertx.version>3.6.3</vertx.version>
-        <checkerframework.version>2.1.14</checkerframework.version>
+        <checkerframework.version>2.11.1</checkerframework.version>
         <!-- Can't upgrade to 2.2.x yet because they changed the format of
              the stub files
         <checkerframework.version>2.2.0</checkerframework.version>
@@ -234,7 +234,7 @@
                                     </filter>
                                 </filters>
                                 <transformers>
-                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                     <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                         <mainClass>${main.class}</mainClass>
                                     </transformer>
