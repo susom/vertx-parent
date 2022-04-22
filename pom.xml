@@ -4,7 +4,7 @@
 
     <groupId>com.github.susom</groupId>
     <artifactId>vertx-parent</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- These are here because Sonatype requires them for release to Maven Central,
@@ -81,7 +81,7 @@
                  static analysis) -->
             <groupId>com.github.susom</groupId>
             <artifactId>vertx-parent-files</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.5-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
