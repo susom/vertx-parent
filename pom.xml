@@ -4,7 +4,7 @@
 
     <groupId>com.github.susom</groupId>
     <artifactId>vertx-parent</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.6-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- These are here because Sonatype requires them for release to Maven Central,
@@ -81,7 +81,7 @@
                  static analysis) -->
             <groupId>com.github.susom</groupId>
             <artifactId>vertx-parent-files</artifactId>
-            <version>1.5-SNAPSHOT</version>
+            <version>1.6-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -229,7 +229,7 @@
                                     </filter>
                                 </filters>
                                 <transformers>
-                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                     <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                         <mainClass>${main.class}</mainClass>
                                     </transformer>
