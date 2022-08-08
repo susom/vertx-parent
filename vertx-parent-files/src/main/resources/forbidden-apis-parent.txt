@@ -1,5 +1,6 @@
-@defaultMessage Insecure: Unbounded memory consumption and allows arbitrary and unbounded file upload
+@defaultMessage Insecure: Unbounded memory consumption and allows arbitrary and unbounded file upload - use StrictBodyHandler instead
 io.vertx.core.http.HttpServerRequest#bodyHandler(io.vertx.core.Handler)
+io.vertx.ext.web.handler.BodyHandler
 
 @defaultMessage Insecure: Risky path lookups - use StrictResourceHandler instead
 io.vertx.ext.web.handler.StaticHandler
