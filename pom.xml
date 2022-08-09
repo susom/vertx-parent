@@ -55,6 +55,7 @@
         <errorprone.version>2.1.3</errorprone.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <forbiddenapis.parent.txt>target/vertx-parent-files/forbidden-apis-parent.txt</forbiddenapis.parent.txt>
+        <forbiddenapis.txt>src/tool/forbidden-apis.txt</forbiddenapis.txt>
         <checkstyle.parent.txt>target/vertx-parent-files/checkstyle.xml</checkstyle.parent.txt>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -492,6 +493,7 @@
                             </bundledSignatures>
                             <signaturesFiles>
                                 <signaturesFile>${forbiddenapis.parent.txt}</signaturesFile>
+                                <signaturesFile>${forbiddenapis.txt}</signaturesFile>
                             </signaturesFiles>
                         </configuration>
                         <executions>
