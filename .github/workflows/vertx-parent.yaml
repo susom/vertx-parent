@@ -5,7 +5,7 @@ on:
   pull_request:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Cron job to run daily at midnight (UTC)
+    - cron: '0 8 * * *'  # Cron job to run daily at 8AM UTC (at midnight PDT)
 
 jobs:
   test:
