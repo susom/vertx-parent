@@ -1,0 +1,113 @@
+name: vertx-parent
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: 'som-rit-infrastructure-prod'
+          workload_identity_provider: 'projects/294515190965/locations/global/workloadIdentityPools/github/providers/susom-github'
+          create_credentials_file: true
+          export_environment_variables: true
+          cleanup_credentials: true
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: 17
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Copy Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cp ./travis/new-settings.xml $HOME/.m2/settings.xml
+
+      - name: Update versions for non-SNAPSHOT builds
+        run: |
+          sed -i "s/-SNAPSHOT/-build-${{ github.run_number }}/" pom.xml
+          sed -i "s/-SNAPSHOT/-build-${{ github.run_number }}/" vertx-parent-files/pom.xml
+
+      - name: Run Tests
+        run: |
+          echo "Running Tests"
+          mvn -Dmaven.wagon.http.retryHandler.count=3 -e test --settings $HOME/.m2/settings.xml
+          mvn --batch-mode install -DskipTests=true -Dmaven.javadoc.skip=true -Dcheck1 --settings $HOME/.m2/settings.xml
+          mvn --batch-mode install -DskipTests=true -Dmaven.javadoc.skip=true -Dcheck2 --settings $HOME/.m2/settings.xml
+          mvn -Dmaven.wagon.http.retryHandler.count=3 -e verify --settings $HOME/.m2/settings.xml
+
+      - name: Show Surefire Reports after failure
+        if: failure()
+        run: |
+          echo "\n=== SUREFIRE REPORTS ===\n"
+          for F in target/surefire-reports/*.txt; do echo $F; cat $F; echo; done
+
+  deploy_snapshots:
+    name: Deploy Snapshots
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: 'som-rit-infrastructure-prod'
+          workload_identity_provider: 'projects/294515190965/locations/global/workloadIdentityPools/github/providers/susom-github'
+          create_credentials_file: true
+          export_environment_variables: true
+          cleanup_credentials: true
+
+      - name: Set up OAuth2 access token for Maven
+        run: |
+          echo "ACCESS_TOKEN=$(gcloud auth print-access-token)" >> $GITHUB_ENV
+          
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: 17
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Copy Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cp ./travis/new-settings.xml $HOME/.m2/settings.xml
+
+      - name: Deploy Snapshots
+        run: |
+          echo "Deploying snapshots"
+          mvn -Dmaven.wagon.http.retryHandler.count=3 --batch-mode -e -DskipTests=true deploy
