@@ -114,4 +114,4 @@ jobs:
       - name: Deploy Snapshots
         run: |
           echo "Deploying snapshots"
-          mvn -Dmaven.wagon.http.retryHandler.count=3 --batch-mode -e -DskipTests=true deploy
+          mvn -s $HOME/.m2/settings.xml -Dmaven.wagon.http.retryHandler.count=3 --batch-mode -e -DskipTests=true deploy
