@@ -4,8 +4,6 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-  schedule:
-    - cron: '0 8 * * *'  # Cron job to run daily at 8AM UTC (at midnight PDT)
 
 jobs:
   test:
@@ -74,6 +72,7 @@ jobs:
   deploy_snapshots:
     name: Deploy Snapshots
     runs-on: ubuntu-20.04
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -122,4 +121,3 @@ jobs:
         run: |
           echo "Deploying snapshots"
           mvn -s $HOME/.m2/settings.xml -Dmaven.wagon.http.retryHandler.count=3 --batch-mode -e -DskipTests=true deploy
-        if: github.ref == 'refs/heads/master'
