@@ -52,8 +52,8 @@ jobs:
 
       - name: Update versions for non-SNAPSHOT builds
         run: |
-          sed -i "s/-SNAPSHOT/-build-${{ github.run_number }}/" pom.xml
-          sed -i "s/-SNAPSHOT/-build-${{ github.run_number }}/" vertx-parent-files/pom.xml
+          sed -i "s/-SNAPSHOT/-github-build-${{ github.run_number }}/" pom.xml
+          sed -i "s/-SNAPSHOT/-github-build-${{ github.run_number }}/" vertx-parent-files/pom.xml
 
       - name: Run Tests
         run: |
@@ -114,8 +114,8 @@ jobs:
 
       - name: Update versions for non-SNAPSHOT builds
         run: |
-          sed -i "s/-SNAPSHOT/-build-${{ github.run_number }}/" pom.xml
-          sed -i "s/-SNAPSHOT/-build-${{ github.run_number }}/" vertx-parent-files/pom.xml
+          sed -i "s/-SNAPSHOT/-github-build-${{ github.run_number }}/" pom.xml
+          sed -i "s/-SNAPSHOT/-github-build-${{ github.run_number }}/" vertx-parent-files/pom.xml
 
       - name: Deploy Snapshots
         run: |
