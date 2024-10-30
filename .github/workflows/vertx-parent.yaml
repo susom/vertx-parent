@@ -72,7 +72,7 @@ jobs:
   deploy_snapshots:
     name: Deploy Snapshots
     runs-on: ubuntu-20.04
-    if: github.repository == 'susom/database-goodies' && github.ref == 'refs/heads/master' && github.event_name == 'push'
+    if: github.repository == 'susom/vertx-parent' && github.ref == 'refs/heads/master' && github.event_name == 'push'
     needs: test
     permissions:
       contents: 'read'
