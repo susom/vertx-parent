@@ -8,19 +8,11 @@
             <configuration>
                 <httpConfiguration>
                     <get>
-                        <usePreemptive>true</usePreemptive>
+                        <usePreemptive>false</usePreemptive>
                     </get>
                     <head>
-                        <usePreemptive>true</usePreemptive>
+                        <usePreemptive>false</usePreemptive>
                     </head>
-                    <put>
-                        <params>
-                            <property>
-                                <name>http.protocol.expect-continue</name>
-                                <value>false</value>
-                            </property>
-                        </params>
-                    </put>
                 </httpConfiguration>
             </configuration>
             <username>oauth2accesstoken</username> <!-- Use OAuth2 access token -->
