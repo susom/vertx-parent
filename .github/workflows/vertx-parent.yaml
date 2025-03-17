@@ -56,6 +56,7 @@ jobs:
           echo "\n=== SUREFIRE REPORTS ===\n"
           for F in target/surefire-reports/*.txt; do echo $F; cat $F; echo; done
 
+  # deploys into Artifact Registry when code is pushed to the master branch of the 'susom/vertx-parent' repository.
   deploy_snapshots:
     name: Deploy Snapshots
     runs-on: ubuntu-20.04
