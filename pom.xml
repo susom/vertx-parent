@@ -83,7 +83,7 @@
         <dependency>
             <groupId>com.github.susom</groupId>
             <artifactId>vertx-base</artifactId>
-            <version>3.1-github-build-393</version>
+            <version>3.1-github-build-456</version>
         </dependency>
         <dependency>
             <groupId>com.github.susom</groupId>
