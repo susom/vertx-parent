@@ -605,12 +605,6 @@
                 <gpg.keyname>${env.GPG_KEY_NAME}</gpg.keyname>
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
             </properties>
-            <distributionManagement>
-                <repository>
-                    <id>central</id>
-                    <url>https://central.sonatype.com/api/v1/publisher</url>
-                </repository>
-            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
